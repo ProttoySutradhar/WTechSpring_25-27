@@ -1,0 +1,24 @@
+.container{
+    width:300px;
+    margin:150px auto;
+    padding:30px;
+    border:3px solid black;
+    border-radius:15px;
+    background:white;
+
+}
+
+
+
+.container h1{
+     margin-top: -50px;
+     background: white;
+     display: inline-block;
+     padding: 6px 12px;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-top:10px;
+}

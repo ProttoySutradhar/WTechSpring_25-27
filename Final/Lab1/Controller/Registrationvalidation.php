@@ -12,6 +12,8 @@ $validName="";
 $validMail="";
 $validWeb="";
 
+$datafile="../data.json";
+
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
     $name = $_POST["name"];
@@ -19,10 +21,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $web = $_POST["web"];
     $comment = $_POST["comment"];
 
-    $name = $_REQUEST["name"];
+   /* $name = $_REQUEST["name"];
     $mail = $_REQUEST["mail"];
     $web = $_REQUEST["web"];
-    $comment = $_REQUEST["comment"];
+    $comment = $_REQUEST["comment"];*/
 
     if(isset($_REQUEST["gender"])) 
     {
@@ -106,22 +108,52 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             $_SESSION["gender"]=$gender;
             setcookie('gender', $gender, time()+3600, "/");
 
-            echo "Login Successful";
+            echo "Login Successful<br>";
+
+            $formdata = array("Name"=>$name, "Email"=>$mail, "Website"=>$web, "Comment"=>$comment,"Gender"=>$gender);
+
+            if(file_exists($datafile))
+                {
+                    $existdata = file_get_contents($datafile);
+                    $tempdata = json_decode($existdata,true);
+                }
+                else{
+                    $tempdata=array();
+                }
+
+                if(!is_array($tempdata))
+                    {
+                        $tempdata= array();
+                    }
+                    $tempdata[] = $formdata;
+                    $jsondata =json_encode($tempdata, JSON_PRETTY_PRINT);
+                
+                if(file_put_contents($datafile,$jsondata) !== false)
+                    {
+                        echo "data saved<br>";
+                    }
+                    else{
+                        "please try again<br>";
+                    }
+                $data= file_get_contents($datafile);
+                $mydata = json_decode($data);
+
         }
         else{
-            echo "Please try again!";
+            echo "Please try again!<br>";
         }
-
+    
+if((isset($_SESSION["name"]) && isset($_SESSION["mail"]) && isset($_SESSION["web"]) && isset($_SESSION["comment"]) && isset($_SESSION["gender"])) || (isset($_COOKIE["name"]) && isset($_COOKIE["mail"]) && isset($_COOKIE["web"]) && isset($_COOKIE["comment"]) && isset($_COOKIE["gender"]) ))
+     {
+        echo "welcome back<br>";       
+     }
+    else{
+         echo "please login again<br>";
+     }
 
 }
 
 
-if((isset($_SESSION["name"]) && isset($_SESSION["mail"]) && isset($_SESSION["web"]) && isset($_SESSION["comment"]) && isset($_SESSION["gender"])) || (isset($_COOKIE["name"]) && isset($_COOKIE["mail"]) && isset($_COOKIE["web"]) && isset($_COOKIE["comment"]) && isset($_COOKIE["gender"]) ))
-     {
-        echo "welcome back";       
-     }
-    else{
-         echo "please login again";
-     }
+
 ?>
 

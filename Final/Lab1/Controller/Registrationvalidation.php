@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 $name="";
 $mail="";
 $web="";
@@ -27,6 +30,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
 
     if(!empty($name) && strlen($name) >= 5) {
+
+        
         echo"Name: ".$name."<br>";
     } 
     else 
@@ -37,7 +42,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         $pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
         if(preg_match($pattern, $mail)) 
-        {
+        {   
+            
+            
             $validMail = $mail;
             echo"Email: " . $validMail . "<br>";
         }
@@ -81,5 +88,40 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     else{
         echo"Gender is required<br>";
     }
+
+    if(!empty($name) && strlen($name) >= 5 && !empty($mail) && !empty($web) && !empty($comment) && !empty($gender))
+        {
+            $_SESSION["name"]=$name;
+            setcookie('name', $name, time()+3600, "/");
+
+            $_SESSION["mail"]=$mail;
+            setcookie('mail', $mail, time()+3600, "/");
+
+            $_SESSION["web"]=$web;
+            setcookie('web', $web, time()+3600, "/");
+
+            $_SESSION["comment"]=$comment;
+            setcookie('comment', $comment, time()+3600, "/");
+
+            $_SESSION["gender"]=$gender;
+            setcookie('gender', $gender, time()+3600, "/");
+
+            echo "Login Successful";
+        }
+        else{
+            echo "Please try again!";
+        }
+
+
 }
+
+
+if((isset($_SESSION["name"]) && isset($_SESSION["mail"]) && isset($_SESSION["web"]) && isset($_SESSION["comment"]) && isset($_SESSION["gender"])) || (isset($_COOKIE["name"]) && isset($_COOKIE["mail"]) && isset($_COOKIE["web"]) && isset($_COOKIE["comment"]) && isset($_COOKIE["gender"]) ))
+     {
+        echo "welcome back";       
+     }
+    else{
+         echo "please login again";
+     }
 ?>
+

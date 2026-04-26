@@ -17,6 +17,12 @@
                     <td><p style ='color:red'>*</p></td>
                 </tr>
                 <tr>
+                    <td><label for="password">Password: </label></td>
+                    <td><input type="text" id="password" password ="password"><?php echo $password; ?></td>
+                    <td><p style ='color:red'>*</p></td>
+                </tr>
+
+                <tr>
                     <td><label for="mail">Email: </label></td>
                     <td><input type="email" id="mail" name ="mail"><?php echo $mail; ?></td>
                     <td><p style ='color:red'>*</p></td>

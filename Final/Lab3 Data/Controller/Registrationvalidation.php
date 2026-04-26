@@ -7,10 +7,7 @@ $mail="";
 $web="";
 $comment="";
 $gender="";
-
-$validName="";
-$validMail="";
-$validWeb="";
+$password="";
 
 $datafile="../data.json";
 
@@ -20,16 +17,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $mail = $_POST["mail"];
     $web = $_POST["web"];
     $comment = $_POST["comment"];
+    $password = $_POST["password"];
+    $gender = $_POST["gender"];
 
-   /* $name = $_REQUEST["name"];
-    $mail = $_REQUEST["mail"];
-    $web = $_REQUEST["web"];
-    $comment = $_REQUEST["comment"];*/
-
-    if(isset($_REQUEST["gender"])) 
+    /*if(isset($_REQUEST["gender"])) 
     {
         $gender = $_REQUEST["gender"];
-    }
+    }*/
 
     if(!empty($name) && strlen($name) >= 5) {
 
@@ -40,6 +34,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         echo"Name must be greater than 5 characters<br>";
     }
+
+    if(!empty($password) && strlen($password)>=5)
+        {
+            echo "Password: ".$password."<br>";
+        }
+        else{
+            echo"Password must be greater than 5 characters<br>";
+        }
+
     if(!empty($mail)) 
     {
         $pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
@@ -91,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         echo"Gender is required<br>";
     }
 
-    if(!empty($name) && strlen($name) >= 5 && !empty($mail) && !empty($web) && !empty($comment) && !empty($gender))
+    if((!empty($name) && strlen($name) >= 5) && (!empty($password) && strlen($name) >= 5 ) && !empty($mail) && !empty($web) && !empty($comment) && !empty($gender))
         {
             $_SESSION["name"]=$name;
             setcookie('name', $name, time()+3600, "/");

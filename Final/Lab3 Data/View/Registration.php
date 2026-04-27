@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <td><label for="password">Password: </label></td>
-                    <td><input type="text" id="password" password ="password"><?php echo $password; ?></td>
+                    <td><input type="text" id="password" name ="password"><?php echo $password; ?></td>
                     <td><p style ='color:red'>*</p></td>
                 </tr>
 

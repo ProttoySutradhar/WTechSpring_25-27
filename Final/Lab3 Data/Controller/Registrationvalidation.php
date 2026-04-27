@@ -14,16 +14,17 @@ $datafile="../data.json";
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
     $name = $_POST["name"];
+    $password = $_POST["password"];
     $mail = $_POST["mail"];
     $web = $_POST["web"];
     $comment = $_POST["comment"];
-    $password = $_POST["password"];
-    $gender = $_POST["gender"];
+    
+    //$gender = $_POST["gender"];
 
-    /*if(isset($_REQUEST["gender"])) 
+    if(isset($_REQUEST["gender"])) 
     {
         $gender = $_REQUEST["gender"];
-    }*/
+    }
 
     if(!empty($name) && strlen($name) >= 5) {
 
@@ -99,6 +100,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             $_SESSION["name"]=$name;
             setcookie('name', $name, time()+3600, "/");
 
+            $_SESSION["password"] = $password;
+            setcookie('password',$password, time()+3600, "/");
+
             $_SESSION["mail"]=$mail;
             setcookie('mail', $mail, time()+3600, "/");
 
@@ -113,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
             echo "Login Successful<br>";
 
-            $formdata = array("Name"=>$name, "Email"=>$mail, "Website"=>$web, "Comment"=>$comment,"Gender"=>$gender);
+            $formdata = array("Name"=>$name, "Password"=>$password, "Email"=>$mail, "Website"=>$web, "Comment"=>$comment,"Gender"=>$gender);
 
             if(file_exists($datafile))
                 {
@@ -146,7 +150,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             echo "Please try again!<br>";
         }
     
-if((isset($_SESSION["name"]) && isset($_SESSION["mail"]) && isset($_SESSION["web"]) && isset($_SESSION["comment"]) && isset($_SESSION["gender"])) || (isset($_COOKIE["name"]) && isset($_COOKIE["mail"]) && isset($_COOKIE["web"]) && isset($_COOKIE["comment"]) && isset($_COOKIE["gender"]) ))
+if((isset($_SESSION["name"]) && isset($_SESSION["password"]) && isset($_SESSION["mail"]) && isset($_SESSION["web"]) && isset($_SESSION["comment"]) && isset($_SESSION["gender"])) || (isset($_COOKIE["name"]) && isset($_COOKIE["password"]) && isset($_COOKIE["mail"]) && isset($_COOKIE["web"]) && isset($_COOKIE["comment"]) && isset($_COOKIE["gender"]) ))
      {
         echo "welcome back<br>";       
      }

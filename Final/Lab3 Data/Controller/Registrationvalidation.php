@@ -1,5 +1,5 @@
 <?php
-
+include "../Model/db.php";
 session_start();
 
 $name="";
@@ -146,9 +146,19 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                 $mydata = json_decode($data);
 
         }
+        
+        $database = new db();
+        $connection = $database->connection();
+        $result = $database->signup($connection, "user1",$name,$password,$mail,$web,$comment,$gender);
+        if($result)
+            {
+                Header("Location: ../View/Login.php");
+            }
+
         else{
-            echo "Please try again!<br>";
-        }
+                echo "Please try again!";
+            }
+
     
 if((isset($_SESSION["name"]) && isset($_SESSION["password"]) && isset($_SESSION["mail"]) && isset($_SESSION["web"]) && isset($_SESSION["comment"]) && isset($_SESSION["gender"])) || (isset($_COOKIE["name"]) && isset($_COOKIE["password"]) && isset($_COOKIE["mail"]) && isset($_COOKIE["web"]) && isset($_COOKIE["comment"]) && isset($_COOKIE["gender"]) ))
      {

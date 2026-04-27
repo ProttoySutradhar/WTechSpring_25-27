@@ -23,6 +23,13 @@ class db{
         $result = $connection->query($sql);
         return $result;
     }
+
+    function signin($connection, $tablename, $name, $password)
+    {
+        $sql = "SELECT * FROM ".$tablename." WHERE name ='".$name."' AND password='".$password."'";
+        $result = $connection->query($sql);
+        return $result; 
+    }
 }
 
 

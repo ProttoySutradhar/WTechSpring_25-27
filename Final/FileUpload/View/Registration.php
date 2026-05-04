@@ -1,4 +1,8 @@
-<?php include "../Controller/Registrationvalidation.php";?>
+<?php 
+    include "../Controller/Registrationvalidation.php";
+    echo "<h1>Registation Page </h1> <br>"
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -6,7 +10,7 @@
         <title>Registration in login form</title>
     </head>
     <body>
-        <form method="post" action="">
+        <form method="post" action="../Controller.php" enctype="multipart/from-data">
              <table>
                 <tr>
                     <td><p style = 'color:red'>* Required field</p></td>

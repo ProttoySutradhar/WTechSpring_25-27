@@ -41,19 +41,25 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                     else{
                         echo "No Data Saved";
                     }
-            $database = new db();
-            $connection = $database->connection();
-            $result = $database->signin($connection,"user1", $name, $password);
-            if($result)
-                {
-                    Header("Location:../View/Dashboard.php ");
-                }
 
-       
-            }
-            else{
-                echo "Please Use the appropiate validation";
-            }
+             if(!empty($name) && strlen($name)>=5 && strlen($password)>=4)
+                {
+                    $database = new db();
+                    $connection = $database->connection();
+                    $result = $database->signin($connection,"user1", $name, $password);
+
+                   if($result)
+                  {
+                        Header("Location:../View/Dashboard.php ");
+                  }
+
+                 else{
+                   echo "Please Use the appropiate validation";
+                    }
+                 }
+              
+            }     
+           
 
     if(!isset($_SESSION["name"]) || isset($_COOKIE["name"]))
         {

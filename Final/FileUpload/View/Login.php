@@ -1,3 +1,12 @@
+<?php
+session_start();
+$isLoggedIn=$SESSION["loggedIn"] ?? false;
+if($isLoggedIn)
+    {
+        Header("Location:Dashboard.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <body>

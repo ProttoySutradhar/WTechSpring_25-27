@@ -34,6 +34,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                                 $_SESSION["role"] = $role;
                                 $_SESSION["loggedIn"] = true;
                                 setcookie("UserName", $username, time()+3600, "/");
+                                setcookie("Password", $password, time()+3600, "/");
                                 Header("Location:../View/Dashboard.php");
                                 exit();
                             }

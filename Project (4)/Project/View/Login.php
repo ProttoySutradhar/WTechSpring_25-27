@@ -17,11 +17,11 @@ if($isLoggedIn)
             <table>
                 <tr>
                     <td>User Name: </td>
-                    <td><input type="text" name="name"/></td>
+                    <td><input type="text" name="name" value="<?php echo $_COOKIE['UserName'] ?? '' ?>"/></td>
                 </tr>
                 <tr>
                     <td>Password: </td>
-                    <td><input type="password" name="password"></td>
+                    <td><input type="password" name="password" value="<?php echo $_COOKIE['Password'] ?? '' ?>"></td>
                 </tr>
                 <tr>
                     <td></td>

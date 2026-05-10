@@ -4,14 +4,14 @@ echo "<h1>Registration Page</h1><br>";
 ?>
 <!DOCTYPE html>
 <html>
-    <head><Script src="../Controller/JS/CheckUserName.js"></Script></head>
+    <head></head>
     <body>
         <form method="post" action="../Controller/RegistrationController.php">
             <table>
                 <tr>
                     <td><label for="username">User Name: </label></td>
-                    <td><input type="text" id="name" name="name" onkeyup=CheckUserName()> <?php echo $name ?></td>
-                    <td><p id="userresponse"></p></td>
+                    <td><input type="text" id="name" name="name"> <?php echo $name ?></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td><label for="password">Password: </label></td>
